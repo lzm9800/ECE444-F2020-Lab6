@@ -75,16 +75,19 @@ def test_messages(client):
     assert b"Hello" in rv.data
     assert b"<strong>HTML</strong> allowed here" in rv.data
 
+
 def test_delete_message(client):
     """Ensure the messages are being deleted"""
-    rv = client.get('/delete/1')
+    rv = client.get("/delete/1")
     data = json.loads(rv.data)
     assert data["status"] == 1
+
 
 def test_search(client):
     # make sure search exists
     response = client.get("/search/?query = test", content_type="html/text")
     assert response.status_code == 200
+
 
 def test_delete_message(client):
     """Ensure the messages are being deleted"""
